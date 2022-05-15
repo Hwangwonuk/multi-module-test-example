@@ -1,0 +1,39 @@
+ifndef::snippets[]
+:snippets: ../../../build/generated-snippets
+endif::[]
+= WE PLAY API DOCS
+:doctype: book
+:icons: font
+:source-highlighter: highlightjs
+:toc: left
+:toclevels: 3
+:sectlinks:
+
+[[introduction]]
+== Introduction
+
+API DOCS generated on {date}
+
+Version: {version}
+
+====
+- developer : *{developer}*
+====
+
+== API list
+
+- Post(글 정보) API
+
+=== Post API
+
+:: 글 상세 정보 API
+
+==== Request
+
+include::{snippets}/post/detail/http-request.adoc[]
+include::{snippets}/post/detail/path-parameters.adoc[]
+
+
+==== Response
+include::{snippets}/post/detail/http-response.adoc[]
+include::{snippets}/post/detail/response-fields.adoc[]

@@ -1,0 +1,45 @@
+plugins {
+    id "org.asciidoctor.convert" version "1.5.3"
+}
+
+bootJar {
+    dependsOn asciidoctor
+    from ("${asciidoctor.outputDir}/html5") {
+        into 'static/docs'
+    }
+}
+
+dependencies {
+    
+    compile project(':domain')
+    compile('org.springframework.boot:spring-boot-starter-web')
+
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+
+    //rest doc
+    asciidoctor('org.springframework.restdocs:spring-restdocs-asciidoctor')
+    testCompile('org.springframework.restdocs:spring-restdocs-mockmvc')
+}
+
+
+test {
+    outputs.dir snippetsDir
+}
+
+version '1.0.0-' + new Date().format("yyyy-MM-dd-HH-mm-ss")
+
+asciidoctor {
+    inputs.dir snippetsDir
+    dependsOn test
+}
+
+
+//*************************Rest Doc*************************
+asciidoctor {
+    attributes "date": new Date().format("yyyy-MM-dd"),
+            "version": version,
+            "developer": "ryudung"
+    inputs.dir snippetsDir
+    dependsOn test
+}
+//*************************Rest Doc*************************
